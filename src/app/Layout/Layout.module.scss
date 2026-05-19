@@ -74,3 +74,10 @@
   font-size: 0.875rem;
   color: $color-text-muted;
 }
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-2xl;
+}

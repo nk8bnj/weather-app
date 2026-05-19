@@ -1,0 +1,88 @@
+@use '@/shared/styles/variables' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.cityName {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: $color-text-primary;
+}
+
+.country {
+  font-weight: 400;
+  color: $color-text-secondary;
+}
+
+.description {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: $color-text-secondary;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.icon {
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.temperature {
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  color: $color-text-primary;
+  line-height: 1;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-md;
+  margin: 0;
+  padding-top: $space-lg;
+  border-top: 1px solid $color-border;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $space-sm;
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  margin: 0;
+}
+
+.statLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statValue {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: $color-text-primary;
+}
