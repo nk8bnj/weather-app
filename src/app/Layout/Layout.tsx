@@ -1,5 +1,10 @@
 import { CitySearch } from '@/features/city-search';
-import { CurrentWeatherCard, useCurrentWeather } from '@/features/weather';
+import {
+  CurrentWeatherCard,
+  ForecastSection,
+  useCurrentWeather,
+  useForecast,
+} from '@/features/weather';
 import { FavoriteToggleButton, FavoritesList, useFavorites } from '@/features/favorites';
 import { useSelectedCity } from '@/shared/lib/hooks';
 import { Spinner, ErrorMessage } from '@/shared/ui';
@@ -9,15 +14,17 @@ export const Layout = () => {
   const { selectedCity, setSelectedCity } = useSelectedCity();
   const { favorites, isFavorite, toggleFavorite, removeFavorite } = useFavorites();
 
+  const lat = selectedCity?.lat ?? null;
+  const lon = selectedCity?.lon ?? null;
+
   const {
     data: weather,
-    isLoading,
-    isError,
-    error,
-  } = useCurrentWeather({
-    lat: selectedCity?.lat ?? null,
-    lon: selectedCity?.lon ?? null,
-  });
+    isLoading: isWeatherLoading,
+    isError: isWeatherError,
+    error: weatherError,
+  } = useCurrentWeather({ lat, lon });
+
+  const { data: forecast } = useForecast({ lat, lon });
 
   return (
     <div className={styles.layout}>
@@ -45,15 +52,15 @@ export const Layout = () => {
             <p className={styles.placeholder}>Use the search above to find weather for any city.</p>
           )}
 
-          {selectedCity && isLoading && (
+          {selectedCity && isWeatherLoading && (
             <div className={styles.centered}>
               <Spinner size="lg" />
             </div>
           )}
 
-          {selectedCity && isError && (
+          {selectedCity && isWeatherError && (
             <ErrorMessage title="Could not load weather">
-              {error instanceof Error ? error.message : 'Something went wrong.'}
+              {weatherError instanceof Error ? weatherError.message : 'Something went wrong.'}
             </ErrorMessage>
           )}
 
@@ -66,6 +73,7 @@ export const Layout = () => {
                 />
               </div>
               <CurrentWeatherCard weather={weather} />
+              {forecast && <ForecastSection forecast={forecast} />}
             </div>
           )}
         </main>

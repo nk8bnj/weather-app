@@ -1,0 +1,123 @@
+@use '@/shared/styles/variables' as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  padding-top: $space-lg;
+  border-top: 1px solid $color-border;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-md;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-text-primary;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  background-color: $color-surface-elevated;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.tab {
+  padding: $space-xs $space-md;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: $color-text-secondary;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-radius: calc(#{$radius-md} - 2px);
+  transition:
+    background-color 0.1s,
+    color 0.1s;
+
+  &:hover:not(.active) {
+    color: $color-text-primary;
+  }
+
+  &.active {
+    color: $color-text-primary;
+    background-color: $color-surface;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+  gap: $space-sm;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @include mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 132px;
+  padding: $space-md $space-sm;
+  background-color: $color-surface-elevated;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.itemLabel {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: $color-text-secondary;
+}
+
+.itemIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.itemTemp {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.itemTempRange {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+.itemTempMax {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.itemTempMin {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
