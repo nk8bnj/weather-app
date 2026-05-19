@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import { CitySearch } from '@/features/city-search';
-import type { CityLocation } from '@/features/city-search';
 import { CurrentWeatherCard, useCurrentWeather } from '@/features/weather';
 import { FavoriteToggleButton, FavoritesList, useFavorites } from '@/features/favorites';
+import { useSelectedCity } from '@/shared/lib/hooks';
 import { Spinner, ErrorMessage } from '@/shared/ui';
 import styles from './Layout.module.scss';
 
 export const Layout = () => {
-  const [selectedCity, setSelectedCity] = useState<CityLocation | null>(null);
+  const { selectedCity, setSelectedCity } = useSelectedCity();
   const { favorites, isFavorite, toggleFavorite, removeFavorite } = useFavorites();
 
   const {
