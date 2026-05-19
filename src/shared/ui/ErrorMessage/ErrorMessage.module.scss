@@ -27,3 +27,19 @@
 .action {
   margin-top: $space-sm;
 }
+
+.retryButton {
+  padding: $space-sm $space-md;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: $color-accent;
+  color: white;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &:hover {
+    background-color: $color-accent-hover;
+  }
+}

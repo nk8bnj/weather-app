@@ -1,13 +1,14 @@
 import { CitySearch } from '@/features/city-search';
 import {
   CurrentWeatherCard,
+  CurrentWeatherCardSkeleton,
   ForecastSection,
   useCurrentWeather,
   useForecast,
 } from '@/features/weather';
 import { FavoriteToggleButton, FavoritesList, useFavorites } from '@/features/favorites';
 import { useSelectedCity } from '@/shared/lib/hooks';
-import { Spinner, ErrorMessage } from '@/shared/ui';
+import { ErrorMessage } from '@/shared/ui';
 import styles from './Layout.module.scss';
 
 export const Layout = () => {
@@ -22,6 +23,7 @@ export const Layout = () => {
     isLoading: isWeatherLoading,
     isError: isWeatherError,
     error: weatherError,
+    refetch: refetchWeather,
   } = useCurrentWeather({ lat, lon });
 
   const { data: forecast } = useForecast({ lat, lon });
@@ -29,7 +31,7 @@ export const Layout = () => {
   return (
     <div className={styles.layout}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Weather</h1>
+        <h1 className={styles.title}>Weather App</h1>
       </header>
 
       <div className={styles.search}>
@@ -52,14 +54,15 @@ export const Layout = () => {
             <p className={styles.placeholder}>Use the search above to find weather for any city.</p>
           )}
 
-          {selectedCity && isWeatherLoading && (
-            <div className={styles.centered}>
-              <Spinner size="lg" />
-            </div>
-          )}
+          {selectedCity && isWeatherLoading && <CurrentWeatherCardSkeleton />}
 
           {selectedCity && isWeatherError && (
-            <ErrorMessage title="Could not load weather">
+            <ErrorMessage
+              title="Could not load weather"
+              onRetry={() => {
+                void refetchWeather();
+              }}
+            >
               {weatherError instanceof Error ? weatherError.message : 'Something went wrong.'}
             </ErrorMessage>
           )}

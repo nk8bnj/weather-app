@@ -1,2 +1,2 @@
-export { CurrentWeatherCard } from './CurrentWeatherCard';
+export { CurrentWeatherCard, CurrentWeatherCardSkeleton } from './CurrentWeatherCard';
 export { ForecastSection } from './ForecastSection';

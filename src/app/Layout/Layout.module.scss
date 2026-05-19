@@ -8,6 +8,11 @@
   margin: 0 auto;
   padding: $space-lg;
   gap: $space-lg;
+
+  @include mobile {
+    padding: $space-md;
+    gap: $space-md;
+  }
 }
 
 .header {
@@ -24,7 +29,7 @@
 }
 
 .search {
-  max-width: 480px;
+  // max-width: 480px;
   width: 100%;
 }
 
@@ -38,6 +43,10 @@
   @include tablet {
     grid-template-columns: 1fr;
   }
+
+  @include mobile {
+    gap: $space-md;
+  }
 }
 
 .sidebar {
@@ -48,6 +57,10 @@
   display: flex;
   flex-direction: column;
   gap: $space-md;
+
+  @include mobile {
+    padding: $space-md;
+  }
 }
 
 .sidebarTitle {
@@ -67,6 +80,10 @@
   display: flex;
   flex-direction: column;
   gap: $space-lg;
+
+  @include mobile {
+    padding: $space-md;
+  }
 }
 
 .placeholder {

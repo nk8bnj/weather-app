@@ -1,0 +1,23 @@
+@use '@/shared/styles/variables' as *;
+
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    $color-surface-elevated 0%,
+    $color-surface-hover 50%,
+    $color-surface-elevated 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
