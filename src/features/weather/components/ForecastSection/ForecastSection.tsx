@@ -1,8 +1,7 @@
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 
 import type { Forecast } from '../../api';
 import { getDailyForecast, getHourlyForecast } from '../../lib/aggregateForecast';
-import { ForecastChart } from '../ForecastChart';
 import {
   formatHour,
   formatTemperature,
@@ -13,6 +12,10 @@ import {
 import styles from './ForecastSection.module.scss';
 
 type ForecastMode = 'hourly' | 'daily';
+
+const ForecastChart = lazy(() =>
+  import('../ForecastChart').then((module) => ({ default: module.ForecastChart })),
+);
 
 interface ForecastSectionProps {
   forecast: Forecast;
@@ -64,7 +67,9 @@ export const ForecastSection = ({ forecast }: ForecastSectionProps) => {
         </div>
       </header>
 
-      <ForecastChart data={chartData} />
+      <Suspense fallback={null}>
+        <ForecastChart data={chartData} />
+      </Suspense>
 
       {mode === 'hourly' ? (
         <ul className={styles.list}>

@@ -64,11 +64,11 @@ describe('useFavorites', () => {
     expect(result.current.favorites).toEqual([london, paris]);
   });
 
-  it('adds a favorite and persists it to localStorage', () => {
+  it('toggles a favorite on and persists it to localStorage', () => {
     const { result } = renderHook(() => useFavorites());
 
     act(() => {
-      result.current.addFavorite(london);
+      result.current.toggleFavorite(london);
     });
 
     expect(result.current.favorites).toEqual([london]);
@@ -76,24 +76,9 @@ describe('useFavorites', () => {
     expect(stored).toEqual([london]);
   });
 
-  it('does not add a duplicate favorite', () => {
-    const { result } = renderHook(() => useFavorites());
-
-    act(() => {
-      result.current.addFavorite(london);
-      result.current.addFavorite(london);
-    });
-
-    expect(result.current.favorites).toEqual([london]);
-  });
-
   it('removes a favorite by coordinates', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([london, paris]));
     const { result } = renderHook(() => useFavorites());
-
-    act(() => {
-      result.current.addFavorite(london);
-      result.current.addFavorite(paris);
-    });
 
     act(() => {
       result.current.removeFavorite({ lat: london.lat, lon: london.lon });
@@ -117,13 +102,8 @@ describe('useFavorites', () => {
   });
 
   it('isFavorite reflects current state', () => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([london]));
     const { result } = renderHook(() => useFavorites());
-
-    expect(result.current.isFavorite(london)).toBe(false);
-
-    act(() => {
-      result.current.addFavorite(london);
-    });
 
     expect(result.current.isFavorite(london)).toBe(true);
     expect(result.current.isFavorite(paris)).toBe(false);

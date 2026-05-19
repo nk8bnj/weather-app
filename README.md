@@ -1,50 +1,78 @@
-# React + TypeScript + Vite
+# Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript application that shows current weather and a 5-day forecast for any city. Built as a test assignment.
 
-Currently, two official plugins are available:
+**Live demo:** <https://weather-app-henna-nine-36.vercel.app/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- City search with autocomplete and 300ms debounce
+- Current weather: temperature, condition, humidity, wind, feels-like
+- Forecast with two modes: next 24 hours and 5 days, with a temperature chart
+- Favorite cities saved to `localStorage`
+- Selected city persisted in the URL (shareable links, survives refresh)
+- Loading skeletons, error states with retry, responsive layout
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech stack
 
-- Configure the top-level `parserOptions` property like this:
+- **Vite** + **React 19** + **TypeScript**
+- **TanStack Query** for data fetching, caching, and request cancellation
+- **Recharts** for the forecast temperature chart
+- **CSS Modules** + **SCSS** for styling
+- **Vitest** + **Testing Library** for unit tests
+- **ESLint** + **Prettier** + **Husky** + **lint-staged** for code quality
+- **OpenWeather API** as the data source
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Getting started
+
+### Prerequisites
+
+- Node.js 20+
+- npm
+- An OpenWeather API key — register at <https://openweathermap.org/api> (free tier is enough; the key activates ~10 minutes after registration)
+
+### Setup
+
+```bash
+git clone <repo-url>
+cd weather-app
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Create `.env.local` in the project root:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+VITE_OPENWEATHER_API_KEY=your_api_key_here
+VITE_OPENWEATHER_BASE_URL=https://api.openweathermap.org
+```
+
+### Run
+
+```bash
+npm run dev          # start dev server at http://localhost:5173
+npm run build        # production build
+npm run preview      # preview the production build locally
+npm run test         # run tests in watch mode
+npm run test:run     # run tests once
+npm run lint         # lint
+npm run format       # format with Prettier
+```
+
+## Project structure
+
+```
+src/
+  app/                       application shell (layout, providers)
+  features/
+    weather/                 current weather + forecast (API, hooks, components)
+    city-search/             search with autocomplete + reverse geocoding
+    favorites/               localStorage-backed favorites
+    geolocation/             browser geolocation hook
+  shared/
+    config/                  env config
+    lib/                     api client, hooks, formatters
+    styles/                  global SCSS and variables
+    ui/                      reusable UI primitives (Spinner, ErrorMessage, Skeleton)
+```
+
+Each feature folder is self-contained (`api/`, `hooks/`, `components/`) and exposes a barrel `index.ts`. The `app/` layer composes features; `shared/` holds anything not tied to a specific domain.

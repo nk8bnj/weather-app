@@ -5,7 +5,6 @@ import { cityId, loadFavorites, saveFavorites } from '../storage';
 interface UseFavoritesResult {
   favorites: CityLocation[];
   isFavorite: (city: Pick<CityLocation, 'lat' | 'lon'>) => boolean;
-  addFavorite: (city: CityLocation) => void;
   removeFavorite: (city: Pick<CityLocation, 'lat' | 'lon'>) => void;
   toggleFavorite: (city: CityLocation) => void;
 }
@@ -25,15 +24,6 @@ export const useFavorites = (): UseFavoritesResult => {
     [favorites],
   );
 
-  const addFavorite = useCallback((city: CityLocation) => {
-    setFavorites((current) => {
-      if (current.some((favorite) => cityId(favorite) === cityId(city))) {
-        return current;
-      }
-      return [...current, city];
-    });
-  }, []);
-
   const removeFavorite = useCallback((city: Pick<CityLocation, 'lat' | 'lon'>) => {
     const target = cityId(city);
     setFavorites((current) => current.filter((favorite) => cityId(favorite) !== target));
@@ -52,7 +42,6 @@ export const useFavorites = (): UseFavoritesResult => {
   return {
     favorites,
     isFavorite,
-    addFavorite,
     removeFavorite,
     toggleFavorite,
   };
