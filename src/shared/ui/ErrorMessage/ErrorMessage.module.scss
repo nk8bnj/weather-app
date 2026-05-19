@@ -1,0 +1,29 @@
+@use '@/shared/styles/variables' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-sm;
+  padding: $space-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  background-color: $color-surface;
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-danger;
+}
+
+.message {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $color-text-secondary;
+}
+
+.action {
+  margin-top: $space-sm;
+}
