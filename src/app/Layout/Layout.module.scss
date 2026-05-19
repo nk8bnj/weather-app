@@ -23,6 +23,11 @@
   color: $color-text-primary;
 }
 
+.search {
+  max-width: 480px;
+  width: 100%;
+}
+
 .body {
   display: grid;
   grid-template-columns: 280px 1fr;

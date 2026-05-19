@@ -1,0 +1,103 @@
+@use '@/shared/styles/variables' as *;
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: $space-md;
+  font-size: 1rem;
+  background-color: $color-surface;
+  color: $color-text-primary;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:hover {
+    border-color: $color-border-strong;
+  }
+
+  &:focus {
+    border-color: $color-accent;
+    box-shadow: 0 0 0 3px $color-accent-soft;
+  }
+}
+
+.spinner {
+  position: absolute;
+  right: $space-md;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + #{$space-xs});
+  left: 0;
+  right: 0;
+  background-color: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  z-index: 10;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-xs;
+  padding: $space-md;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.1s;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $color-surface-hover;
+    outline: none;
+  }
+}
+
+.cityName {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.cityMeta {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
+
+.message {
+  padding: $space-md;
+  font-size: 0.875rem;
+  color: $color-text-muted;
+}
