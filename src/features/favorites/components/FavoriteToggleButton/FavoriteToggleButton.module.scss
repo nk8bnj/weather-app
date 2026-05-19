@@ -1,0 +1,30 @@
+@use '@/shared/styles/variables' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  padding: $space-sm $space-md;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: $color-surface;
+  color: $color-text-secondary;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition:
+    background-color 0.1s,
+    border-color 0.1s,
+    color 0.1s;
+
+  &:hover {
+    background-color: $color-surface-hover;
+    border-color: $color-border-strong;
+  }
+
+  &.active {
+    background-color: $color-accent-soft;
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}

@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { CitySearch } from '@/features/city-search';
 import type { CityLocation } from '@/features/city-search';
 import { CurrentWeatherCard, useCurrentWeather } from '@/features/weather';
+import { FavoriteToggleButton, FavoritesList, useFavorites } from '@/features/favorites';
 import { Spinner, ErrorMessage } from '@/shared/ui';
 import styles from './Layout.module.scss';
 
 export const Layout = () => {
   const [selectedCity, setSelectedCity] = useState<CityLocation | null>(null);
+  const { favorites, isFavorite, toggleFavorite, removeFavorite } = useFavorites();
 
   const {
     data: weather,
@@ -31,7 +33,12 @@ export const Layout = () => {
       <div className={styles.body}>
         <aside className={styles.sidebar}>
           <h2 className={styles.sidebarTitle}>Favorites</h2>
-          <p className={styles.placeholder}>No favorites yet.</p>
+          <FavoritesList
+            favorites={favorites}
+            selectedCity={selectedCity}
+            onSelect={setSelectedCity}
+            onRemove={removeFavorite}
+          />
         </aside>
 
         <main className={styles.main}>
@@ -51,7 +58,17 @@ export const Layout = () => {
             </ErrorMessage>
           )}
 
-          {weather && <CurrentWeatherCard weather={weather} />}
+          {weather && selectedCity && (
+            <div className={styles.weatherSection}>
+              <div className={styles.weatherHeader}>
+                <FavoriteToggleButton
+                  isFavorite={isFavorite(selectedCity)}
+                  onToggle={() => toggleFavorite(selectedCity)}
+                />
+              </div>
+              <CurrentWeatherCard weather={weather} />
+            </div>
+          )}
         </main>
       </div>
     </div>

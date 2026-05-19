@@ -1,0 +1,80 @@
+@use '@/shared/styles/variables' as *;
+
+.empty {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $color-text-muted;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.item {
+  display: flex;
+  align-items: stretch;
+  gap: $space-xs;
+}
+
+.cityButton {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-xs;
+  padding: $space-sm $space-md;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.1s,
+    border-color 0.1s;
+
+  &:hover {
+    background-color: $color-surface-hover;
+  }
+
+  &.active {
+    background-color: $color-accent-soft;
+    border-color: $color-accent;
+  }
+}
+
+.cityName {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.cityMeta {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
+
+.removeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  color: $color-text-muted;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition:
+    background-color 0.1s,
+    color 0.1s;
+
+  &:hover {
+    background-color: $color-surface-hover;
+    color: $color-danger;
+  }
+}

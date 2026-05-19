@@ -81,3 +81,14 @@
   justify-content: center;
   padding: $space-2xl;
 }
+
+.weatherSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.weatherHeader {
+  display: flex;
+  justify-content: flex-end;
+}
