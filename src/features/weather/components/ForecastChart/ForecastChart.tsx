@@ -40,7 +40,7 @@ export const ForecastChart = ({ data }: ForecastChartProps) => {
               borderRadius: '0.5rem',
               fontSize: '0.875rem',
             }}
-            formatter={(value: number) => [`${Math.round(value)}°C`, 'Temperature']}
+            formatter={(value) => [`${Math.round(Number(value ?? 0))}°C`, 'Temperature']}
           />
           <Line
             type="monotone"
