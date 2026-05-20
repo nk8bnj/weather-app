@@ -1,6 +1,6 @@
 # Weather App
 
-A React + TypeScript application that shows current weather and a 5-day forecast for any city. Built as a test assignment.
+A React + TypeScript application that shows current weather and a 5-day forecast for any city.
 
 **Live demo:** <https://weather-app-henna-nine-36.vercel.app/>
 
@@ -34,7 +34,7 @@ A React + TypeScript application that shows current weather and a 5-day forecast
 ### Setup
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/nk8bnj/weather-app.git
 cd weather-app
 npm install
 ```
