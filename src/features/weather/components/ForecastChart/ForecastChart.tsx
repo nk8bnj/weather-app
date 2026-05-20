@@ -49,7 +49,14 @@ export const ForecastChart = ({ data }: ForecastChartProps) => {
               fontSize: '0.875rem',
               fontWeight: 700,
             }}
-            formatter={(value: number) => [`${Math.round(value)}°C`, 'Temperature']}
+            formatter={(value) => {
+              const temperature = Number(value);
+
+              return [
+                Number.isFinite(temperature) ? `${Math.round(temperature)}°C` : '',
+                'Temperature',
+              ];
+            }}
           />
           <Line
             type="monotone"
