@@ -6,40 +6,57 @@
   align-items: flex-start;
   gap: $space-sm;
   padding: $space-lg;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  background-color: $color-surface;
+  background-color: $color-danger;
+  color: $color-surface;
+  border: $border-thickness solid $border-color;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
 }
 
 .title {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: $color-danger;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $color-surface;
 }
 
 .message {
   margin: 0;
-  font-size: 0.875rem;
-  color: $color-text-secondary;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: $color-surface;
 }
 
 .action {
   margin-top: $space-sm;
+  display: flex;
+  gap: $space-sm;
 }
 
 .retryButton {
   padding: $space-sm $space-md;
   font-size: 0.875rem;
-  font-weight: 500;
-  background-color: $color-accent;
-  color: white;
-  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: $color-surface;
+  color: $color-text-primary;
+  border: $border-thickness solid $border-color;
   border-radius: $radius-md;
+  box-shadow: $shadow-sm;
   cursor: pointer;
-  transition: background-color 0.1s;
+  transition:
+    transform 0.1s ease-out,
+    box-shadow 0.1s ease-out;
 
   &:hover {
-    background-color: $color-accent-hover;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 $color-foreground;
+  }
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: $shadow-active;
   }
 }

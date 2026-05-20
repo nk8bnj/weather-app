@@ -7,7 +7,6 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-
 import styles from './ForecastChart.module.scss';
 
 interface ChartPoint {
@@ -22,33 +21,43 @@ interface ForecastChartProps {
 export const ForecastChart = ({ data }: ForecastChartProps) => {
   return (
     <div className={styles.chart}>
-      <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={data} margin={{ top: 8, right: 8, bottom: 8, left: -16 }}>
-          <CartesianGrid stroke="#e2e8f0" strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="label" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
-          <YAxis
-            stroke="#94a3b8"
+      <ResponsiveContainer width="100%" height={220}>
+        <LineChart data={data} margin={{ top: 12, right: 12, bottom: 8, left: -16 }}>
+          <CartesianGrid stroke="#1a1410" strokeDasharray="4 4" vertical={false} opacity={0.2} />
+          <XAxis
+            dataKey="label"
+            stroke="#1a1410"
             fontSize={12}
+            fontWeight={700}
             tickLine={false}
-            axisLine={false}
+            axisLine={{ stroke: '#1a1410', strokeWidth: 2 }}
+          />
+          <YAxis
+            stroke="#1a1410"
+            fontSize={12}
+            fontWeight={700}
+            tickLine={false}
+            axisLine={{ stroke: '#1a1410', strokeWidth: 2 }}
             tickFormatter={(value: number) => `${Math.round(value)}°`}
           />
           <Tooltip
             contentStyle={{
               backgroundColor: '#ffffff',
-              border: '1px solid #e2e8f0',
-              borderRadius: '0.5rem',
+              border: '2px solid #1a1410',
+              borderRadius: '6px',
+              boxShadow: '4px 4px 0 #1a1410',
               fontSize: '0.875rem',
+              fontWeight: 700,
             }}
-            formatter={(value) => [`${Math.round(Number(value ?? 0))}°C`, 'Temperature']}
+            formatter={(value: number) => [`${Math.round(value)}°C`, 'Temperature']}
           />
           <Line
             type="monotone"
             dataKey="temperature"
-            stroke="#2563eb"
-            strokeWidth={2}
-            dot={{ r: 3, fill: '#2563eb' }}
-            activeDot={{ r: 5 }}
+            stroke="#1a1410"
+            strokeWidth={3}
+            dot={{ r: 5, fill: '#ff6b1a', stroke: '#1a1410', strokeWidth: 2 }}
+            activeDot={{ r: 7, fill: '#ff6b1a', stroke: '#1a1410', strokeWidth: 2 }}
           />
         </LineChart>
       </ResponsiveContainer>

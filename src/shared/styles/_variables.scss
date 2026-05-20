@@ -1,18 +1,36 @@
-// Colors
-$color-bg: #ffffff;
-$color-surface: #ffffff;
-$color-surface-elevated: #f8fafc;
-$color-surface-hover: #f1f5f9;
-$color-border: #e2e8f0;
-$color-border-strong: #cbd5e1;
-$color-text-primary: #0f172a;
-$color-text-secondary: #475569;
-$color-text-muted: #94a3b8;
-$color-accent: #2563eb;
-$color-accent-hover: #1d4ed8;
-$color-accent-soft: #eff6ff;
-$color-danger: #dc2626;
-$color-success: #16a34a;
+// Palette — Cream + Orange editorial brutalism
+$color-bg: #fff5cf; // warm cream background
+$color-surface: #fffbec;
+$color-surface-elevated: #fbf6ea;
+$color-surface-hover: #f0e8d3;
+
+$color-foreground: #1a1410; // near-black with brown undertone
+$color-text-primary: #1a1410;
+$color-text-secondary: #4a3f33;
+$color-text-muted: #8a7d6e;
+
+$color-accent: #ff6b1a; // vivid orange — main accent
+$color-accent-hover: #e85a0c;
+$color-accent-soft: #ffe8d6;
+
+$color-secondary: #58473b; // dark surface for contrast blocks
+$color-secondary-text: #f5efe0; // cream text on dark blocks
+
+$color-tertiary: #ff6b1a; // chart line — same orange for consistency
+$color-quaternary: #fbf6ea; // soft cream for sidebar tint
+
+$color-danger: #c92a2a;
+$color-success: #2f9e44;
+
+// Border (single thickness)
+$border-thickness: 2px;
+$border-color: $color-foreground;
+
+// Shadows — the signature element
+$shadow-sm: 3px 3px 0 #{$color-foreground};
+$shadow-md: 5px 5px 0 #{$color-foreground};
+$shadow-lg: 8px 8px 0 #{$color-foreground};
+$shadow-active: 0 0 0 #{$color-foreground};
 
 // Spacing
 $space-xs: 0.25rem;
@@ -23,17 +41,16 @@ $space-xl: 2rem;
 $space-2xl: 3rem;
 
 // Radius
-$radius-sm: 0.375rem;
-$radius-md: 0.5rem;
-$radius-lg: 0.75rem;
-$radius-xl: 1rem;
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
 
 // Breakpoints
 $bp-mobile: 640px;
 $bp-tablet: 768px;
 $bp-desktop: 1024px;
 
-// Mixins
 @mixin mobile {
   @media (max-width: #{$bp-mobile}) {
     @content;
@@ -43,5 +60,31 @@ $bp-desktop: 1024px;
 @mixin tablet {
   @media (max-width: #{$bp-tablet}) {
     @content;
+  }
+}
+
+// Reusable brutalist mixins
+@mixin brutalist-card($bg: $color-surface, $shadow: $shadow-md) {
+  background-color: $bg;
+  border: $border-thickness solid $border-color;
+  border-radius: $radius-md;
+  box-shadow: $shadow;
+}
+
+@mixin brutalist-interactive($bg: $color-surface, $shadow: $shadow-md) {
+  @include brutalist-card($bg, $shadow);
+  cursor: pointer;
+  transition:
+    transform 0.1s ease-out,
+    box-shadow 0.1s ease-out;
+
+  &:hover {
+    transform: translate(2px, 2px);
+    box-shadow: $shadow-sm;
+  }
+
+  &:active {
+    transform: translate(5px, 5px);
+    box-shadow: $shadow-active;
   }
 }

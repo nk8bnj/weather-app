@@ -3,7 +3,9 @@
 .empty {
   margin: 0;
   font-size: 0.875rem;
-  color: $color-text-muted;
+  font-weight: 600;
+  color: $color-secondary-text;
+  opacity: 0.7;
 }
 
 .list {
@@ -12,13 +14,13 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: $space-xs;
+  gap: $space-sm;
 }
 
 .item {
   display: flex;
   align-items: stretch;
-  gap: $space-xs;
+  gap: $space-sm;
 }
 
 .cityButton {
@@ -28,53 +30,74 @@
   align-items: flex-start;
   gap: $space-xs;
   padding: $space-sm $space-md;
-  background: transparent;
-  border: 1px solid transparent;
+  background-color: $color-surface;
+  border: $border-thickness solid $border-color;
   border-radius: $radius-md;
+  box-shadow: $shadow-sm;
   text-align: left;
   cursor: pointer;
   transition:
-    background-color 0.1s,
-    border-color 0.1s;
+    transform 0.1s ease-out,
+    box-shadow 0.1s ease-out,
+    background-color 0.1s;
 
   &:hover {
-    background-color: $color-surface-hover;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 $color-foreground;
+  }
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: $shadow-active;
   }
 
   &.active {
-    background-color: $color-accent-soft;
-    border-color: $color-accent;
+    background-color: $color-accent;
+    color: $color-surface;
   }
 }
 
 .cityName {
   font-size: 0.9375rem;
-  font-weight: 500;
-  color: $color-text-primary;
+  font-weight: 700;
+  color: inherit;
 }
 
 .cityMeta {
-  font-size: 0.8125rem;
-  color: $color-text-muted;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: inherit;
+  opacity: 0.75;
 }
 
 .removeButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  background: transparent;
-  border: 1px solid transparent;
+  width: 36px;
+  background-color: $color-surface;
+  border: $border-thickness solid $border-color;
   border-radius: $radius-md;
-  color: $color-text-muted;
+  box-shadow: $shadow-sm;
+  color: $color-text-primary;
   font-size: 0.875rem;
+  font-weight: 700;
   cursor: pointer;
   transition:
+    transform 0.1s ease-out,
+    box-shadow 0.1s ease-out,
     background-color 0.1s,
     color 0.1s;
 
   &:hover {
-    background-color: $color-surface-hover;
-    color: $color-danger;
+    background-color: $color-danger;
+    color: $color-surface;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 $color-foreground;
+  }
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: $shadow-active;
   }
 }

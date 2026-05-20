@@ -6,25 +6,32 @@
   gap: $space-xs;
   padding: $space-sm $space-md;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   background-color: $color-surface;
-  color: $color-text-secondary;
-  border: 1px solid $color-border;
+  color: $color-text-primary;
+  border: $border-thickness solid $border-color;
   border-radius: $radius-md;
+  box-shadow: $shadow-sm;
   cursor: pointer;
   transition:
-    background-color 0.1s,
-    border-color 0.1s,
-    color 0.1s;
+    transform 0.1s ease-out,
+    box-shadow 0.1s ease-out,
+    background-color 0.1s;
 
   &:hover {
-    background-color: $color-surface-hover;
-    border-color: $color-border-strong;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 $color-foreground;
+  }
+
+  &:active {
+    transform: translate(3px, 3px);
+    box-shadow: $shadow-active;
   }
 
   &.active {
-    background-color: $color-accent-soft;
-    border-color: $color-accent;
-    color: $color-accent;
+    background-color: $color-accent;
+    color: $color-surface;
   }
 }

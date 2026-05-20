@@ -22,14 +22,15 @@
 
 .title {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
   color: $color-text-primary;
+  text-transform: uppercase;
 }
 
 .search {
-  // max-width: 480px;
+  max-width: 480px;
   width: 100%;
 }
 
@@ -50,13 +51,12 @@
 }
 
 .sidebar {
-  background-color: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
+  @include brutalist-card($color-secondary);
   padding: $space-lg;
   display: flex;
   flex-direction: column;
   gap: $space-md;
+  color: $color-secondary-text;
 
   @include mobile {
     padding: $space-md;
@@ -66,16 +66,14 @@
 .sidebarTitle {
   margin: 0;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: $color-text-muted;
+  color: $color-accent;
 }
 
 .main {
-  background-color: $color-surface;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
+  @include brutalist-card;
   padding: $space-lg;
   display: flex;
   flex-direction: column;
@@ -88,8 +86,9 @@
 
 .placeholder {
   margin: 0;
-  font-size: 0.875rem;
-  color: $color-text-muted;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-text-secondary;
 }
 
 .centered {

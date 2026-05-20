@@ -2,22 +2,17 @@
 
 .skeleton {
   display: block;
-  background: linear-gradient(
-    90deg,
-    $color-surface-elevated 0%,
-    $color-surface-hover 50%,
-    $color-surface-elevated 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.4s ease-in-out infinite;
+  background-color: $color-surface-hover;
+  border: $border-thickness solid $border-color;
+  animation: pulse 1.2s ease-in-out infinite;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 200% 0;
-  }
-
+@keyframes pulse {
+  0%,
   100% {
-    background-position: -200% 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
   }
 }
