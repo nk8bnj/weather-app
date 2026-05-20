@@ -49,6 +49,12 @@
   width: 96px;
   height: 96px;
   flex-shrink: 0;
+  padding: $space-xs;
+  background-color: $color-surface;
+  border: $border-thickness solid $border-color;
+  border-radius: 50%;
+  box-shadow: $shadow-sm;
+  box-sizing: border-box;
 }
 
 .temperature {
